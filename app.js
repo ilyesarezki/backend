@@ -1,12 +1,23 @@
 const express = require('express');
 const createError = require('http-errors');
 const dotenv = require('dotenv').config();  
+const cors = require("cors");
 
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
+
+app.get('/',cors(), async (req, res, next) => {
+    res.send("this is working")
+});
+
+app.post("/post_Name", async (req, res) => {
+     (Name) = req.body.Name;
+    console.log(Name);
+});
 
 //initialize DB
 require('./initDB')();
